@@ -58,14 +58,19 @@
     <target name="minify">
         <echo message="Building ${dist.min.name}..." />
 
-        <jscomp compilationLevel="simple" debug="false" output="${dist.dir}/${dist.min.name}">
-            <externs dir="${build.dir}">
-                <file name="externs.js"/>
-            </externs>
-            <sources dir="${dist.dir}">
-                <file name="${dist.name}"/>
-            </sources>
-        </jscomp>
+        <java jar="${closure_compiler.jar}" fork="true" >
+            <!-- Input and output files -->
+            <arg value="--js" />
+            <arg value="${dist.dir}/${dist.name}" />
+            <arg value="--js_output_file" />
+            <arg value="${dist.dir}/${dist.min.name}" />
+            <arg value="--compilation_level" />
+            <arg value="SIMPLE_OPTIMIZATIONS" />
+            <arg value="--language_in" />
+            <arg value="ECMASCRIPT_2020" />
+            <arg value="--language_out" />
+            <arg value="ECMASCRIPT_2020" />
+        </java>
 
         <echo message="${dist.min.name} built." />
     </target>
