@@ -6,11 +6,6 @@
     <property file="build/build.properties" />
 
 
-    <!-- custom tasks -->
-
-    <taskdef name="jscomp" classname="com.google.javascript.jscomp.ant.CompileTask" classpath="${closure_compiler.jar}"/>
-
-
     <!-- targets -->
 
     <target name="-purgeJsDeploy">
@@ -49,17 +44,15 @@
     </target>
 
     <target name="lint">
-        <echo message="JSLinting ${dist.name}..."/>
+        <echo message="ESLinting ${dist.name}..." />
 
-        <apply executable="java">
+        <apply executable="node_modules/.bin/eslint.cmd">
             <filelist dir="${dist.dir}">
-                <file name="${dist.name}"/>
+                <file name="${dist.name}" />
             </filelist>
-            <arg line="-jar"/>
-            <arg path="${jslint.jar}"/>
         </apply>
 
-        <echo message="JSLinted ${dist.name}."/>
+        <echo message="ESLinted ${dist.name}." />
     </target>
 
     <target name="minify">

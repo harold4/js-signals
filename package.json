@@ -1,34 +1,43 @@
 {
-    "name" : "signals",
-    "description" : "Custom Event/Messaging System",
-    "keywords" : ["js-signals", "signals", "pub/sub", "event", "publish", "subscribe", "observer"],
-    "homepage" : "http://millermedeiros.github.com/js-signals/",
-    "version" : "1.0.0",
-    "author" : {
-        "name" : "Miller Medeiros",
-        "url" : "http://blog.millermedeiros.com/"
+    "name": "signals",
+    "description": "Custom Event/Messaging System",
+    "keywords": [
+        "js-signals",
+        "signals",
+        "pub/sub",
+        "event",
+        "publish",
+        "subscribe",
+        "observer"
+    ],
+    "homepage": "http://millermedeiros.github.com/js-signals/",
+    "version": "1.0.0",
+    "author": {
+        "name": "Miller Medeiros",
+        "url": "http://blog.millermedeiros.com/"
     },
-    "repository" : {
-        "type" : "git",
-        "url" : "https://github.com/millermedeiros/js-signals.git"
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/millermedeiros/js-signals.git"
     },
-    "main" : "dist/signals.js",
-    "bugs" : {
-        "url" : "https://github.com/millermedeiros/js-signals/issues"
+    "main": "dist/signals.js",
+    "bugs": {
+        "url": "https://github.com/millermedeiros/js-signals/issues"
     },
-    "devDependencies" : {
-        "jasmine-node" : "~1.0"
+    "devDependencies": {
+        "eslint": "^9.22.0",
+        "jasmine-node": "~1.0"
     },
-    "scripts" : {
-        "test" : "jasmine-node test/spec"
+    "scripts": {
+        "test": "jasmine-node test/spec"
     },
-    "directories" : {
-        "doc" : "./dist/docs"
+    "directories": {
+        "doc": "./dist/docs"
     },
-    "licenses" : [
+    "licenses": [
         {
-            "type" : "MIT",
-            "url" : "http://www.opensource.org/licenses/mit-license.php"
+            "type": "MIT",
+            "url": "http://www.opensource.org/licenses/mit-license.php"
         }
     ]
 }
