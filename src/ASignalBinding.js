@@ -72,14 +72,14 @@
          * Call listener passing arbitrary parameters.
          * <p>If binding was added using `ASignal.addOnce()` it will be automatically removed from signal dispatch queue, this method is used internally for the signal dispatch.</p>
          * @param {Array} [paramsArr] Array of parameters that should be passed to the listener
-         * @return {*} Value returned by the listener.
+         * @return {Promise<any>} Value returned by the listener.
          */
-        execute : function (paramsArr) {
+        execute : async function (paramsArr) {
             var handlerReturn, params;
             if (this.active && !!this._listener) {
                 params = this.params? this.params.concat(paramsArr) : paramsArr;
                 try {
-                    handlerReturn = this._listener.apply(this.context, params);
+                    handlerReturn = await this._listener.apply(this.context, params);
                 } finally {
                     if (this._isOnce) {
                         this.detach();

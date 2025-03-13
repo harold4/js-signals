@@ -26,8 +26,8 @@
 
         // enforce dispatch to aways work on same context (#47)
         var self = this;
-        this.dispatch = function(){
-            ASignal.prototype.dispatch.apply(self, arguments);
+        this.dispatch = async function(){
+            await ASignal.prototype.dispatch.apply(self, arguments);
         };
     }
 
@@ -66,10 +66,10 @@
          * @param {boolean} isOnce
          * @param {Object} [listenerContext]
          * @param {Number} [priority]
-         * @return {ASignalBinding}
+         * @return {Promise<ASignalBinding>}
          * @private
          */
-        _registerListener : function (listener, isOnce, listenerContext, priority) {
+        _registerListener : async function (listener, isOnce, listenerContext, priority) {
 
             var prevIndex = this._indexOfListener(listener, listenerContext),
                 binding;
@@ -85,7 +85,7 @@
             }
 
             if(this.memorize && this._prevParams){
-                binding.execute(this._prevParams);
+                await binding.execute(this._prevParams);
             }
 
             return binding;
@@ -134,11 +134,11 @@
          * @param {Function} listener ASignal handler function.
          * @param {Object} [listenerContext] Context on which listener will be executed (object that should represent the `this` variable inside listener function).
          * @param {Number} [priority] The priority level of the event listener. Listeners with higher priority will be executed before listeners with lower priority. Listeners with same priority level will be executed at the same order as they were added. (default = 0)
-         * @return {ASignalBinding} An Object representing the binding between the ASignal and listener.
+         * @return {Promise<ASignalBinding>} An Object representing the binding between the ASignal and listener.
          */
-        add : function (listener, listenerContext, priority) {
+        add : async function (listener, listenerContext, priority) {
             validateListener(listener, 'add');
-            return this._registerListener(listener, false, listenerContext, priority);
+            return await this._registerListener(listener, false, listenerContext, priority);
         },
 
         /**
@@ -146,11 +146,11 @@
          * @param {Function} listener ASignal handler function.
          * @param {Object} [listenerContext] Context on which listener will be executed (object that should represent the `this` variable inside listener function).
          * @param {Number} [priority] The priority level of the event listener. Listeners with higher priority will be executed before listeners with lower priority. Listeners with same priority level will be executed at the same order as they were added. (default = 0)
-         * @return {ASignalBinding} An Object representing the binding between the ASignal and listener.
+         * @return {Promise<ASignalBinding>} An Object representing the binding between the ASignal and listener.
          */
-        addOnce : function (listener, listenerContext, priority) {
+        addOnce : async function (listener, listenerContext, priority) {
             validateListener(listener, 'addOnce');
-            return this._registerListener(listener, true, listenerContext, priority);
+            return await this._registerListener(listener, true, listenerContext, priority);
         },
 
         /**
@@ -200,8 +200,9 @@
         /**
          * Dispatch/Broadcast ASignal to all listeners added to the queue.
          * @param {...*} [params] Parameters that should be passed to each handler.
+         * @return {Promise<void>}
          */
-        dispatch : function (params) {
+        dispatch : async function (params) {
             if (! this.active) {
                 return;
             }
@@ -233,7 +234,7 @@
 
             //execute all callbacks until end of the list or until a callback returns `false` or stops propagation
             //reverse loop since listeners with higher priority will be added at the end of the list
-            do { n--; } while (bindings[n] && this._shouldPropagate && bindings[n].execute(paramsArr) !== false);
+            do { n--; } while (bindings[n] && this._shouldPropagate && await bindings[n].execute(paramsArr) !== false);
         },
 
         /**
