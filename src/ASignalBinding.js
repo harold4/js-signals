@@ -1,21 +1,21 @@
-    // SignalBinding -------------------------------------------------
+    // ASignalBinding -------------------------------------------------
     //================================================================
 
     /**
      * Object that represents a binding between a ASignal and a listener function.
      * <br />- <strong>This is an internal constructor and shouldn't be called by regular users.</strong>
-     * <br />- inspired by Joa Ebert AS3 SignalBinding and Robert Penner's Slot classes.
+     * <br />- inspired by Joa Ebert AS3 ASignalBinding and Robert Penner's Slot classes.
      * @author Miller Medeiros
      * @constructor
      * @internal
-     * @name SignalBinding
+     * @name ASignalBinding
      * @param {ASignal} signal Reference to ASignal object that listener is currently bound to.
      * @param {Function} listener Handler function bound to the signal.
      * @param {boolean} isOnce If binding should be executed just once.
      * @param {Object} [listenerContext] Context on which listener will be executed (object that should represent the `this` variable inside listener function).
      * @param {Number} [priority] The priority level of the event listener. (default = 0).
      */
-    function SignalBinding(signal, listener, isOnce, listenerContext, priority) {
+    function ASignalBinding(signal, listener, isOnce, listenerContext, priority) {
 
         /**
          * Handler function bound to the signal.
@@ -33,7 +33,7 @@
 
         /**
          * Context on which listener will be executed (object that should represent the `this` variable inside listener function).
-         * @memberOf SignalBinding.prototype
+         * @memberOf ASignalBinding.prototype
          * @name context
          * @type Object|undefined|null
          */
@@ -54,7 +54,7 @@
         this._priority = priority || 0;
     }
 
-    SignalBinding.prototype = {
+    ASignalBinding.prototype = {
 
         /**
          * If binding is active and should be executed.
@@ -63,7 +63,7 @@
         active : true,
 
         /**
-         * Default parameters passed to listener during `ASignal.dispatch` and `SignalBinding.execute`. (curried parameters)
+         * Default parameters passed to listener during `ASignal.dispatch` and `ASignalBinding.execute`. (curried parameters)
          * @type Array|null
          */
         params : null,
@@ -106,7 +106,7 @@
         },
 
         /**
-         * @return {boolean} If SignalBinding will only be executed once.
+         * @return {boolean} If ASignalBinding will only be executed once.
          */
         isOnce : function () {
             return this._isOnce;
@@ -140,7 +140,7 @@
          * @return {string} String representation of the object.
          */
         toString : function () {
-            return '[SignalBinding isOnce:' + this._isOnce +', isBound:'+ this.isBound() +', active:' + this.active + ']';
+            return '[ASignalBinding isOnce:' + this._isOnce +', isBound:'+ this.isBound() +', active:' + this.active + ']';
         }
 
     };

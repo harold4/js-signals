@@ -382,7 +382,7 @@ describe('Dispatch', function () {
         });
 
 
-        it('should enable/disable SignalBinding', function () {
+        it('should enable/disable ASignalBinding', function () {
             var s = this.signal;
 
             var n = 0;

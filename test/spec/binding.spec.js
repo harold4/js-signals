@@ -2,7 +2,7 @@ var signals = signals || require('../../dist/signals');
 
 // --
 
-describe('SignalBinding', function () {
+describe('ASignalBinding', function () {
 
     beforeEach(function(){
         this.signal = new signals.Signal();

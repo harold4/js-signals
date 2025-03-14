@@ -1,4 +1,4 @@
-/*global SignalBinding:false*/
+/*global ASignalBinding:false*/
 
     // ASignal --------------------------------------------------------
     //================================================================
@@ -18,7 +18,7 @@
      */
     function ASignal() {
         /**
-         * @type Array.<SignalBinding>
+         * @type Array.<ASignalBinding>
          * @private
          */
         this._bindings = [];
@@ -66,7 +66,7 @@
          * @param {boolean} isOnce
          * @param {Object} [listenerContext]
          * @param {Number} [priority]
-         * @return {SignalBinding}
+         * @return {ASignalBinding}
          * @private
          */
         _registerListener : function (listener, isOnce, listenerContext, priority) {
@@ -80,7 +80,7 @@
                     throw new Error('You cannot add'+ (isOnce? '' : 'Once') +'() then add'+ (!isOnce? '' : 'Once') +'() the same listener without removing the relationship first.');
                 }
             } else {
-                binding = new SignalBinding(this, listener, isOnce, listenerContext, priority);
+                binding = new ASignalBinding(this, listener, isOnce, listenerContext, priority);
                 this._addBinding(binding);
             }
 
@@ -92,7 +92,7 @@
         },
 
         /**
-         * @param {SignalBinding} binding
+         * @param {ASignalBinding} binding
          * @private
          */
         _addBinding : function (binding) {
@@ -134,7 +134,7 @@
          * @param {Function} listener ASignal handler function.
          * @param {Object} [listenerContext] Context on which listener will be executed (object that should represent the `this` variable inside listener function).
          * @param {Number} [priority] The priority level of the event listener. Listeners with higher priority will be executed before listeners with lower priority. Listeners with same priority level will be executed at the same order as they were added. (default = 0)
-         * @return {SignalBinding} An Object representing the binding between the ASignal and listener.
+         * @return {ASignalBinding} An Object representing the binding between the ASignal and listener.
          */
         add : function (listener, listenerContext, priority) {
             validateListener(listener, 'add');
@@ -146,7 +146,7 @@
          * @param {Function} listener ASignal handler function.
          * @param {Object} [listenerContext] Context on which listener will be executed (object that should represent the `this` variable inside listener function).
          * @param {Number} [priority] The priority level of the event listener. Listeners with higher priority will be executed before listeners with lower priority. Listeners with same priority level will be executed at the same order as they were added. (default = 0)
-         * @return {SignalBinding} An Object representing the binding between the ASignal and listener.
+         * @return {ASignalBinding} An Object representing the binding between the ASignal and listener.
          */
         addOnce : function (listener, listenerContext, priority) {
             validateListener(listener, 'addOnce');
@@ -164,7 +164,7 @@
 
             var i = this._indexOfListener(listener, context);
             if (i !== -1) {
-                this._bindings[i]._destroy(); //no reason to a SignalBinding exist if it isn't attached to a signal
+                this._bindings[i]._destroy(); //no reason to a ASignalBinding exist if it isn't attached to a signal
                 this._bindings.splice(i, 1);
             }
             return listener;

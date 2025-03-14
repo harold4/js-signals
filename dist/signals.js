@@ -20,14 +20,14 @@
      * @author Miller Medeiros
      * @constructor
      * @internal
-     * @name SignalBinding
+     * @name ASignalBinding
      * @param {Signal} signal Reference to Signal object that listener is currently bound to.
      * @param {Function} listener Handler function bound to the signal.
      * @param {boolean} isOnce If binding should be executed just once.
      * @param {Object} [listenerContext] Context on which listener will be executed (object that should represent the `this` variable inside listener function).
      * @param {Number} [priority] The priority level of the event listener. (default = 0).
      */
-    function SignalBinding(signal, listener, isOnce, listenerContext, priority) {
+    function ASignalBinding(signal, listener, isOnce, listenerContext, priority) {
 
         /**
          * Handler function bound to the signal.
@@ -45,7 +45,7 @@
 
         /**
          * Context on which listener will be executed (object that should represent the `this` variable inside listener function).
-         * @memberOf SignalBinding.prototype
+         * @memberOf ASignalBinding.prototype
          * @name context
          * @type Object|undefined|null
          */
@@ -66,7 +66,7 @@
         this._priority = priority || 0;
     }
 
-    SignalBinding.prototype = {
+    ASignalBinding.prototype = {
 
         /**
          * If binding is active and should be executed.
@@ -178,7 +178,7 @@
      */
     function Signal() {
         /**
-         * @type Array.<SignalBinding>
+         * @type Array.<ASignalBinding>
          * @private
          */
         this._bindings = [];
@@ -226,7 +226,7 @@
          * @param {boolean} isOnce
          * @param {Object} [listenerContext]
          * @param {Number} [priority]
-         * @return {SignalBinding}
+         * @return {ASignalBinding}
          * @private
          */
         _registerListener : function (listener, isOnce, listenerContext, priority) {
@@ -240,7 +240,7 @@
                     throw new Error('You cannot add'+ (isOnce? '' : 'Once') +'() then add'+ (!isOnce? '' : 'Once') +'() the same listener without removing the relationship first.');
                 }
             } else {
-                binding = new SignalBinding(this, listener, isOnce, listenerContext, priority);
+                binding = new ASignalBinding(this, listener, isOnce, listenerContext, priority);
                 this._addBinding(binding);
             }
 
@@ -252,7 +252,7 @@
         },
 
         /**
-         * @param {SignalBinding} binding
+         * @param {ASignalBinding} binding
          * @private
          */
         _addBinding : function (binding) {
@@ -294,7 +294,7 @@
          * @param {Function} listener Signal handler function.
          * @param {Object} [listenerContext] Context on which listener will be executed (object that should represent the `this` variable inside listener function).
          * @param {Number} [priority] The priority level of the event listener. Listeners with higher priority will be executed before listeners with lower priority. Listeners with same priority level will be executed at the same order as they were added. (default = 0)
-         * @return {SignalBinding} An Object representing the binding between the Signal and listener.
+         * @return {ASignalBinding} An Object representing the binding between the Signal and listener.
          */
         add : function (listener, listenerContext, priority) {
             validateListener(listener, 'add');
@@ -306,7 +306,7 @@
          * @param {Function} listener Signal handler function.
          * @param {Object} [listenerContext] Context on which listener will be executed (object that should represent the `this` variable inside listener function).
          * @param {Number} [priority] The priority level of the event listener. Listeners with higher priority will be executed before listeners with lower priority. Listeners with same priority level will be executed at the same order as they were added. (default = 0)
-         * @return {SignalBinding} An Object representing the binding between the Signal and listener.
+         * @return {ASignalBinding} An Object representing the binding between the Signal and listener.
          */
         addOnce : function (listener, listenerContext, priority) {
             validateListener(listener, 'addOnce');
