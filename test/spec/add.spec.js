@@ -7,7 +7,7 @@ describe('Add / Add Once', function () {
     });
 
 
-    describe('Signal.add()', function () {
+    describe('ASignal.add()', function () {
 
         it('should increase number of listeners', function () {
             var s = this.signal;
@@ -47,7 +47,7 @@ describe('Add / Add Once', function () {
 
     //--------------------------- Add / Has ---------------------------------//
 
-    describe('Signal.has()', function () {
+    describe('ASignal.has()', function () {
 
         it('it should check if signal has listener', function () {
             var s = this.signal;
@@ -62,7 +62,7 @@ describe('Add / Add Once', function () {
 
     //--------------------------- Add Once ---------------------------------//
 
-    describe('Signal.addOnce()', function () {
+    describe('ASignal.addOnce()', function () {
 
         it('add listener', function () {
             var s = this.signal;
@@ -94,7 +94,7 @@ describe('Add / Add Once', function () {
 
     //--------------------------- Add Mixed ---------------------------------//
 
-    describe('Signal.add() + Signal.addOnce()', function () {
+    describe('ASignal.add() + ASignal.addOnce()', function () {
 
         it('should throw error if same listener add followed by addOnce', function () {
             var s = this.signal;

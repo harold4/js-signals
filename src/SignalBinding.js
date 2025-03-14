@@ -2,14 +2,14 @@
     //================================================================
 
     /**
-     * Object that represents a binding between a Signal and a listener function.
+     * Object that represents a binding between a ASignal and a listener function.
      * <br />- <strong>This is an internal constructor and shouldn't be called by regular users.</strong>
      * <br />- inspired by Joa Ebert AS3 SignalBinding and Robert Penner's Slot classes.
      * @author Miller Medeiros
      * @constructor
      * @internal
      * @name SignalBinding
-     * @param {Signal} signal Reference to Signal object that listener is currently bound to.
+     * @param {ASignal} signal Reference to ASignal object that listener is currently bound to.
      * @param {Function} listener Handler function bound to the signal.
      * @param {boolean} isOnce If binding should be executed just once.
      * @param {Object} [listenerContext] Context on which listener will be executed (object that should represent the `this` variable inside listener function).
@@ -40,8 +40,8 @@
         this.context = listenerContext;
 
         /**
-         * Reference to Signal object that listener is currently bound to.
-         * @type Signal
+         * Reference to ASignal object that listener is currently bound to.
+         * @type ASignal
          * @private
          */
         this._signal = signal;
@@ -63,14 +63,14 @@
         active : true,
 
         /**
-         * Default parameters passed to listener during `Signal.dispatch` and `SignalBinding.execute`. (curried parameters)
+         * Default parameters passed to listener during `ASignal.dispatch` and `SignalBinding.execute`. (curried parameters)
          * @type Array|null
          */
         params : null,
 
         /**
          * Call listener passing arbitrary parameters.
-         * <p>If binding was added using `Signal.addOnce()` it will be automatically removed from signal dispatch queue, this method is used internally for the signal dispatch.</p>
+         * <p>If binding was added using `ASignal.addOnce()` it will be automatically removed from signal dispatch queue, this method is used internally for the signal dispatch.</p>
          * @param {Array} [paramsArr] Array of parameters that should be passed to the listener
          * @return {*} Value returned by the listener.
          */
@@ -120,7 +120,7 @@
         },
 
         /**
-         * @return {Signal} Signal that listener is currently bound to.
+         * @return {ASignal} ASignal that listener is currently bound to.
          */
         getSignal : function () {
             return this._signal;

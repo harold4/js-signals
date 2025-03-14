@@ -16,7 +16,7 @@
     } else { //browser
         //use string because of Google closure compiler ADVANCED_MODE
         /*jslint sub:true */
-        global['signals'] = signals;
+        global['asignals'] = signals;
     }
 
 }(this));

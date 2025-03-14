@@ -8,7 +8,7 @@ describe('Dispose', function () {
         this.signal = new signals.Signal();
     });
 
-    it('clear internal refences and "destroy" Signal', function () {
+    it('clear internal refences and "destroy" ASignal', function () {
         var s = this.signal;
         s.memorize = true;
         s.add(function(){});
