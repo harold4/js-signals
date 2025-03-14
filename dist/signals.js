@@ -5,7 +5,7 @@
  * JS Signals <http://millermedeiros.github.com/js-signals/>
  * Released under the MIT license
  * Author: Miller Medeiros
- * Version: 1.0.0 - Build: 268 (2012/11/29 05:48 PM)
+ * Version: 1.0.1 - Build: 273 (2025/03/14 06:40 PM)
  */
 
 (function(global){
@@ -90,9 +90,12 @@
             var handlerReturn, params;
             if (this.active && !!this._listener) {
                 params = this.params? this.params.concat(paramsArr) : paramsArr;
-                handlerReturn = this._listener.apply(this.context, params);
-                if (this._isOnce) {
-                    this.detach();
+                try {
+                    handlerReturn = this._listener.apply(this.context, params);
+                } finally {
+                    if (this._isOnce) {
+                        this.detach();
+                    }
                 }
             }
             return handlerReturn;
@@ -195,7 +198,7 @@
          * @type String
          * @const
          */
-        VERSION : '1.0.0',
+        VERSION : '1.0.1',
 
         /**
          * If Signal should keep record of previously dispatched parameters and
@@ -363,8 +366,17 @@
                 return;
             }
 
-            var paramsArr = Array.prototype.slice.call(arguments),
-                n = this._bindings.length,
+            /**
+             * When copying the arguments variable using Array.prototype.slice.call V8 disables optimization for the calling method.
+             * We avoid this issue here by coping arguments to a pre-allocated array.
+             * see https://code.google.com/p/v8/issues/detail?id=3037
+             */
+            var len = arguments.length, paramsArr = new Array(len);
+            for (var i=0; i < len; ++i) {
+                paramsArr[i] = arguments[i];
+            }
+
+            var n = this._bindings.length,
                 bindings;
 
             if (this.memorize) {
