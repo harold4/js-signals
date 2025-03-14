@@ -1,6 +1,6 @@
 /*global SignalBinding:false*/
 
-    // Signal --------------------------------------------------------
+    // ASignal --------------------------------------------------------
     //================================================================
 
     function validateListener(listener, fnName) {
@@ -12,11 +12,11 @@
     /**
      * Custom event broadcaster
      * <br />- inspired by Robert Penner's AS3 Signals.
-     * @name Signal
+     * @name ASignal
      * @author Miller Medeiros
      * @constructor
      */
-    function Signal() {
+    function ASignal() {
         /**
          * @type Array.<SignalBinding>
          * @private
@@ -27,11 +27,11 @@
         // enforce dispatch to aways work on same context (#47)
         var self = this;
         this.dispatch = function(){
-            Signal.prototype.dispatch.apply(self, arguments);
+            ASignal.prototype.dispatch.apply(self, arguments);
         };
     }
 
-    Signal.prototype = {
+    ASignal.prototype = {
 
         /**
          * Signals Version Number
@@ -41,8 +41,8 @@
         VERSION : '::VERSION_NUMBER::',
 
         /**
-         * If Signal should keep record of previously dispatched parameters and
-         * automatically execute listener during `add()`/`addOnce()` if Signal was
+         * If ASignal should keep record of previously dispatched parameters and
+         * automatically execute listener during `add()`/`addOnce()` if ASignal was
          * already dispatched before.
          * @type boolean
          */
@@ -55,7 +55,7 @@
         _shouldPropagate : true,
 
         /**
-         * If Signal is active and should broadcast events.
+         * If ASignal is active and should broadcast events.
          * <p><strong>IMPORTANT:</strong> Setting this property during a dispatch will only affect the next dispatch, if you want to stop the propagation of a signal use `halt()` instead.</p>
          * @type boolean
          */
@@ -120,10 +120,10 @@
         },
 
         /**
-         * Check if listener was attached to Signal.
+         * Check if listener was attached to ASignal.
          * @param {Function} listener
          * @param {Object} [context]
-         * @return {boolean} if Signal has the specified listener.
+         * @return {boolean} if ASignal has the specified listener.
          */
         has : function (listener, context) {
             return this._indexOfListener(listener, context) !== -1;
@@ -131,10 +131,10 @@
 
         /**
          * Add a listener to the signal.
-         * @param {Function} listener Signal handler function.
+         * @param {Function} listener ASignal handler function.
          * @param {Object} [listenerContext] Context on which listener will be executed (object that should represent the `this` variable inside listener function).
          * @param {Number} [priority] The priority level of the event listener. Listeners with higher priority will be executed before listeners with lower priority. Listeners with same priority level will be executed at the same order as they were added. (default = 0)
-         * @return {SignalBinding} An Object representing the binding between the Signal and listener.
+         * @return {SignalBinding} An Object representing the binding between the ASignal and listener.
          */
         add : function (listener, listenerContext, priority) {
             validateListener(listener, 'add');
@@ -143,10 +143,10 @@
 
         /**
          * Add listener to the signal that should be removed after first execution (will be executed only once).
-         * @param {Function} listener Signal handler function.
+         * @param {Function} listener ASignal handler function.
          * @param {Object} [listenerContext] Context on which listener will be executed (object that should represent the `this` variable inside listener function).
          * @param {Number} [priority] The priority level of the event listener. Listeners with higher priority will be executed before listeners with lower priority. Listeners with same priority level will be executed at the same order as they were added. (default = 0)
-         * @return {SignalBinding} An Object representing the binding between the Signal and listener.
+         * @return {SignalBinding} An Object representing the binding between the ASignal and listener.
          */
         addOnce : function (listener, listenerContext, priority) {
             validateListener(listener, 'addOnce');
@@ -171,7 +171,7 @@
         },
 
         /**
-         * Remove all listeners from the Signal.
+         * Remove all listeners from the ASignal.
          */
         removeAll : function () {
             var n = this._bindings.length;
@@ -182,7 +182,7 @@
         },
 
         /**
-         * @return {number} Number of listeners attached to the Signal.
+         * @return {number} Number of listeners attached to the ASignal.
          */
         getNumListeners : function () {
             return this._bindings.length;
@@ -191,14 +191,14 @@
         /**
          * Stop propagation of the event, blocking the dispatch to next listeners on the queue.
          * <p><strong>IMPORTANT:</strong> should be called only during signal dispatch, calling it before/after dispatch won't affect signal broadcast.</p>
-         * @see Signal.prototype.disable
+         * @see ASignal.prototype.disable
          */
         halt : function () {
             this._shouldPropagate = false;
         },
 
         /**
-         * Dispatch/Broadcast Signal to all listeners added to the queue.
+         * Dispatch/Broadcast ASignal to all listeners added to the queue.
          * @param {...*} [params] Parameters that should be passed to each handler.
          */
         dispatch : function (params) {
@@ -238,14 +238,14 @@
 
         /**
          * Forget memorized arguments.
-         * @see Signal.memorize
+         * @see ASignal.memorize
          */
         forget : function(){
             this._prevParams = null;
         },
 
         /**
-         * Remove all bindings from signal and destroy any reference to external objects (destroy Signal object).
+         * Remove all bindings from signal and destroy any reference to external objects (destroy ASignal object).
          * <p><strong>IMPORTANT:</strong> calling any method on the signal instance after calling dispose will throw errors.</p>
          */
         dispose : function () {
@@ -258,7 +258,7 @@
          * @return {string} String representation of the object.
          */
         toString : function () {
-            return '[Signal active:'+ this.active +' numListeners:'+ this.getNumListeners() +']';
+            return '[ASignal active:'+ this.active +' numListeners:'+ this.getNumListeners() +']';
         }
 
     };
@@ -272,12 +272,12 @@
      * @namespace
      * @name signals
      */
-    var signals = Signal;
+    var signals = ASignal;
 
     /**
      * Custom event broadcaster
-     * @see Signal
+     * @see ASignal
      */
     // alias for backwards compatibility (see #gh-44)
-    signals.Signal = Signal;
+    signals.ASignal = ASignal;
 

@@ -183,7 +183,7 @@ describe('Dispatch', function () {
         });
 
         describe('issue #47: invalid context', function () {
-            it('should automatically bind Signal.dispatch context to avoid issues', function () {
+            it('should automatically bind ASignal.dispatch context to avoid issues', function () {
                 var s = this.signal;
 
                 var n = 0;
@@ -292,7 +292,7 @@ describe('Dispatch', function () {
         });
 
 
-        it('should stop propagation if any listener call Signal.halt()', function () {
+        it('should stop propagation if any listener call ASignal.halt()', function () {
             var s = this.signal;
 
             var n = 0;

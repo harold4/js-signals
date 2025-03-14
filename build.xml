@@ -25,7 +25,7 @@
 
         <loadfile property="license.txt" srcFile="${src.dir}/license.txt"/>
         <loadfile property="SignalBinding.js" srcFile="${src.dir}/SignalBinding.js"/>
-        <loadfile property="Signal.js" srcFile="${src.dir}/Signal.js"/>
+        <loadfile property="ASignal.js" srcFile="${src.dir}/ASignal.js"/>
 
         <copy file="${src.dir}/wrapper.js" tofile="${dist.dir}/${dist.name}" />
 
@@ -33,7 +33,7 @@
             <fileset dir="${dist.dir}" includes="${dist.name}" />
             <replacefilter token="//::LICENSE:://" value="${license.txt}" />
             <replacefilter token="//::SIGNAL_BINDING_JS:://" value="${SignalBinding.js}" />
-            <replacefilter token="//::SIGNAL_JS:://" value="${Signal.js}" />
+            <replacefilter token="//::SIGNAL_JS:://" value="${ASignal.js}" />
             <!-- version number, build number/date should come after other replaces -->
             <replacefilter token="::VERSION_NUMBER::" value="${version.number}" />
             <replacefilter token="::BUILD_NUMBER::" value="${build.number}" />

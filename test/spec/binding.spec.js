@@ -179,7 +179,7 @@ describe('SignalBinding', function () {
 
 
     describe('getSignal()', function () {
-        it('should return reference to Signal', function () {
+        it('should return reference to ASignal', function () {
             var s = this.signal;
             var _a;
             var b1 = s.add(function(a){
