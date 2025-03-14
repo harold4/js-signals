@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>JsDoc Reference - Signal</title>
+		<title>JsDoc Reference - ASignal</title>
 
         <link rel="stylesheet" href="../static/default.css" type="text/css" media="screen" charset="utf-8" />
 	</head>
@@ -36,9 +36,9 @@
 	
 	<li><i><a href="../symbols/_global_.html">_global_</a></i></li>
 	
-	<li><a href="../symbols/Signal.html">Signal</a></li>
+	<li><a href="../symbols/ASignal.html">ASignal</a></li>
 	
-	<li><a href="../symbols/SignalBinding.html">SignalBinding</a></li>
+	<li><a href="../symbols/ASignalBinding.html">ASignalBinding</a></li>
 	
 	<li><a href="../symbols/signals.html">signals</a></li>
 	
@@ -54,7 +54,7 @@
              </h3>
              <ul>
                 <li  class="fixedFont">
-                  <a href="../symbols/Signal.html">Signal</a>
+                  <a href="../symbols/ASignal.html">ASignal</a>
                 </li>
              </ul>
            
@@ -67,15 +67,27 @@
              <ul>
                
                  <li class="fixedFont">
-                   <a href="../symbols/Signal.html#active">active</a>
+                   <a href="../symbols/ASignal.html#active">active</a>
                  </li>
                
                  <li class="fixedFont">
-                   <a href="../symbols/Signal.html#memorize">memorize</a>
+                   <a href="../symbols/ASignal.html#add">add</a>
                  </li>
                
                  <li class="fixedFont">
-                   <a href="../symbols/Signal.html#VERSION">VERSION</a>
+                   <a href="../symbols/ASignal.html#addOnce">addOnce</a>
+                 </li>
+               
+                 <li class="fixedFont">
+                   <a href="../symbols/ASignal.html#dispatch">dispatch</a>
+                 </li>
+               
+                 <li class="fixedFont">
+                   <a href="../symbols/ASignal.html#memorize">memorize</a>
+                 </li>
+               
+                 <li class="fixedFont">
+                   <a href="../symbols/ASignal.html#VERSION">VERSION</a>
                  </li>
                
              </ul>
@@ -89,47 +101,35 @@
              <ul>
                
                    <li class="fixedFont">
-                        <a href="../symbols/Signal.html#add">add</a>
+                        <a href="../symbols/ASignal.html#dispose">dispose</a>
                     </li>
                
                    <li class="fixedFont">
-                        <a href="../symbols/Signal.html#addOnce">addOnce</a>
+                        <a href="../symbols/ASignal.html#forget">forget</a>
                     </li>
                
                    <li class="fixedFont">
-                        <a href="../symbols/Signal.html#dispatch">dispatch</a>
+                        <a href="../symbols/ASignal.html#getNumListeners">getNumListeners</a>
                     </li>
                
                    <li class="fixedFont">
-                        <a href="../symbols/Signal.html#dispose">dispose</a>
+                        <a href="../symbols/ASignal.html#halt">halt</a>
                     </li>
                
                    <li class="fixedFont">
-                        <a href="../symbols/Signal.html#forget">forget</a>
+                        <a href="../symbols/ASignal.html#has">has</a>
                     </li>
                
                    <li class="fixedFont">
-                        <a href="../symbols/Signal.html#getNumListeners">getNumListeners</a>
+                        <a href="../symbols/ASignal.html#remove">remove</a>
                     </li>
                
                    <li class="fixedFont">
-                        <a href="../symbols/Signal.html#halt">halt</a>
+                        <a href="../symbols/ASignal.html#removeAll">removeAll</a>
                     </li>
                
                    <li class="fixedFont">
-                        <a href="../symbols/Signal.html#has">has</a>
-                    </li>
-               
-                   <li class="fixedFont">
-                        <a href="../symbols/Signal.html#remove">remove</a>
-                    </li>
-               
-                   <li class="fixedFont">
-                        <a href="../symbols/Signal.html#removeAll">removeAll</a>
-                    </li>
-               
-                   <li class="fixedFont">
-                        <a href="../symbols/Signal.html#toString">toString</a>
+                        <a href="../symbols/ASignal.html#toString">toString</a>
                     </li>
                
              </ul>
@@ -145,7 +145,7 @@
 		<div id="content">
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
-				Class Signal
+				Class ASignal
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -156,7 +156,7 @@
 				
 				
 				
-					<br /><i>Defined in: </i> <a href="../symbols/src/C__dev_my_js-signals_dist_signals.js.html">signals.js</a>.
+					<br /><i>Defined in: </i> <a href="../symbols/src/C__dev_my_js-signals_dist_asignals.js.html">asignals.js</a>.
 				
 			</p>
 
@@ -168,7 +168,7 @@
 				</div>
 				
 				<div class="fixedFont">
-						<b>Signal</b>()
+						<b>ASignal</b>()
 				</div>
 				
 				<div class="description">
@@ -209,9 +209,81 @@
 					
 					</div>
 					<div class="description">
-						<p>If Signal is active and should broadcast events.</p>
+						<p>If ASignal is active and should broadcast events.</p>
 
 <p><strong>IMPORTANT:</strong> Setting this property during a dispatch will only affect the next dispatch, if you want to stop the propagation of a signal use `halt()` instead.</p>
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+                  </div>
+				
+                  <div class="member">
+					<a name="add"> </a>
+					<div class="fixedFont">
+                      <div class="modifiers">
+                      </div>
+					
+					<span class="light">{Promise<ASignalBinding>}</span>
+					<b>add</b>
+					
+					</div>
+					<div class="description">
+						<p>Add a listener to the signal.</p>
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+                  </div>
+				
+                  <div class="member">
+					<a name="addOnce"> </a>
+					<div class="fixedFont">
+                      <div class="modifiers">
+                      </div>
+					
+					<span class="light">{Promise<ASignalBinding>}</span>
+					<b>addOnce</b>
+					
+					</div>
+					<div class="description">
+						<p>Add listener to the signal that should be removed after first execution (will be executed only once).</p>
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+                  </div>
+				
+                  <div class="member">
+					<a name="dispatch"> </a>
+					<div class="fixedFont">
+                      <div class="modifiers">
+                      </div>
+					
+					<span class="light">{Promise<void>}</span>
+					<b>dispatch</b>
+					
+					</div>
+					<div class="description">
+						<p>Dispatch/Broadcast ASignal to all listeners added to the queue.</p>
 						
 						
 					</div>
@@ -235,8 +307,8 @@
 					
 					</div>
 					<div class="description">
-						<p>If Signal should keep record of previously dispatched parameters and
-automatically execute listener during <code>add()</code>/<code>addOnce()</code> if Signal was
+						<p>If ASignal should keep record of previously dispatched parameters and
+automatically execute listener during <code>add()</code>/<code>addOnce()</code> if ASignal was
 already dispatched before.</p>
 						
 						
@@ -285,158 +357,6 @@ already dispatched before.</p>
 				</div>
 				
                   <div class="member">
-					<a name="add"> </a>
-					<div class="fixedFont">
-                      <div class="modifiers">
-                      </div>
-					<span class="light">{<a href="../symbols/SignalBinding.html">SignalBinding</a>}</span>
-					<b>add</b>(listener, listenerContext, priority)
-					
-					</div>
-					<div class="description">
-						<p>Add a listener to the signal.</p>
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{Function}</span> <b>listener</b>
-									
-								</dt>
-								<dd>Signal handler function.</dd>
-							
-								<dt>
-									<span class="light fixedFont">{Object}</span> <b>listenerContext</b>
-									<i>Optional</i>
-								</dt>
-								<dd>Context on which listener will be executed (object that should represent the `this` variable inside listener function).</dd>
-							
-								<dt>
-									<span class="light fixedFont">{Number}</span> <b>priority</b>
-									<i>Optional</i>
-								</dt>
-								<dd>The priority level of the event listener. Listeners with higher priority will be executed before listeners with lower priority. Listeners with same priority level will be executed at the same order as they were added. (default = 0)</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-							<dl class="detailList">
-							<dt class="heading">Returns:</dt>
-							
-								<dd><span class="light fixedFont">{<a href="../symbols/SignalBinding.html">SignalBinding</a>}</span> An Object representing the binding between the Signal and listener.</dd>
-							
-							</dl>
-						
-						
-						
-
-                  </div>
-				
-                  <div class="member">
-					<a name="addOnce"> </a>
-					<div class="fixedFont">
-                      <div class="modifiers">
-                      </div>
-					<span class="light">{<a href="../symbols/SignalBinding.html">SignalBinding</a>}</span>
-					<b>addOnce</b>(listener, listenerContext, priority)
-					
-					</div>
-					<div class="description">
-						<p>Add listener to the signal that should be removed after first execution (will be executed only once).</p>
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{Function}</span> <b>listener</b>
-									
-								</dt>
-								<dd>Signal handler function.</dd>
-							
-								<dt>
-									<span class="light fixedFont">{Object}</span> <b>listenerContext</b>
-									<i>Optional</i>
-								</dt>
-								<dd>Context on which listener will be executed (object that should represent the `this` variable inside listener function).</dd>
-							
-								<dt>
-									<span class="light fixedFont">{Number}</span> <b>priority</b>
-									<i>Optional</i>
-								</dt>
-								<dd>The priority level of the event listener. Listeners with higher priority will be executed before listeners with lower priority. Listeners with same priority level will be executed at the same order as they were added. (default = 0)</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-							<dl class="detailList">
-							<dt class="heading">Returns:</dt>
-							
-								<dd><span class="light fixedFont">{<a href="../symbols/SignalBinding.html">SignalBinding</a>}</span> An Object representing the binding between the Signal and listener.</dd>
-							
-							</dl>
-						
-						
-						
-
-                  </div>
-				
-                  <div class="member">
-					<a name="dispatch"> </a>
-					<div class="fixedFont">
-                      <div class="modifiers">
-                      </div>
-					
-					<b>dispatch</b>(params)
-					
-					</div>
-					<div class="description">
-						<p>Dispatch/Broadcast Signal to all listeners added to the queue.</p>
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{...*}</span> <b>params</b>
-									<i>Optional</i>
-								</dt>
-								<dd>Parameters that should be passed to each handler.</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-                  </div>
-				
-                  <div class="member">
 					<a name="dispose"> </a>
 					<div class="fixedFont">
                       <div class="modifiers">
@@ -446,7 +366,7 @@ already dispatched before.</p>
 					
 					</div>
 					<div class="description">
-						<p>Remove all bindings from signal and destroy any reference to external objects (destroy Signal object).</p>
+						<p>Remove all bindings from signal and destroy any reference to external objects (destroy ASignal object).</p>
 
 <p><strong>IMPORTANT:</strong> calling any method on the signal instance after calling dispose will throw errors.</p>
 						
@@ -492,7 +412,7 @@ already dispatched before.</p>
 							<dl class="detailList">
 							<dt class="heading">See:</dt>
 							
-								<dd>Signal.memorize</dd>
+								<dd>ASignal.memorize</dd>
 							
 							</dl>
 						
@@ -524,7 +444,7 @@ already dispatched before.</p>
 							<dl class="detailList">
 							<dt class="heading">Returns:</dt>
 							
-								<dd><span class="light fixedFont">{number}</span> Number of listeners attached to the Signal.</dd>
+								<dd><span class="light fixedFont">{number}</span> Number of listeners attached to the ASignal.</dd>
 							
 							</dl>
 						
@@ -562,7 +482,7 @@ already dispatched before.</p>
 							<dl class="detailList">
 							<dt class="heading">See:</dt>
 							
-								<dd>Signal.prototype.disable</dd>
+								<dd>ASignal.prototype.disable</dd>
 							
 							</dl>
 						
@@ -579,7 +499,7 @@ already dispatched before.</p>
 					
 					</div>
 					<div class="description">
-						<p>Check if listener was attached to Signal.</p>
+						<p>Check if listener was attached to ASignal.</p>
 						
 						
 					</div>
@@ -611,7 +531,7 @@ already dispatched before.</p>
 							<dl class="detailList">
 							<dt class="heading">Returns:</dt>
 							
-								<dd><span class="light fixedFont">{boolean}</span> if Signal has the specified listener.</dd>
+								<dd><span class="light fixedFont">{boolean}</span> if ASignal has the specified listener.</dd>
 							
 							</dl>
 						
@@ -681,7 +601,7 @@ already dispatched before.</p>
 					
 					</div>
 					<div class="description">
-						<p>Remove all listeners from the Signal.</p>
+						<p>Remove all listeners from the ASignal.</p>
 						
 						
 					</div>
@@ -744,7 +664,7 @@ already dispatched before.</p>
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both;text-align:center">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Fri Mar 14 2025 18:40:52 GMT+0100 (CET)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Fri Mar 14 2025 19:06:51 GMT+0100 (CET)
 			 | template based on Steffen Siering <a href="http://github.com/urso/jsdoc-simple">jsdoc-simple</a>.
 		</div>
 	</body>
